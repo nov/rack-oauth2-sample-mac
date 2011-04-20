@@ -38,7 +38,7 @@ class AuthorizationsController < ApplicationController
             authorization_code = current_account.authorization_codes.create(:client_id => @client, :redirect_uri => res.redirect_uri)
             res.code = authorization_code.token
           when :token
-            res.access_token = current_account.access_tokens.create(:client_id => @client).to_bearer_token
+            res.access_token = current_account.access_tokens.create(:client_id => @client).to_mac_token
           end
           res.approve!
         else
