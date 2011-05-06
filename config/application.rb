@@ -42,7 +42,8 @@ module RackOauth2Sample
     # OAuth2 Resource Server
     require 'rack/oauth2'
     config.middleware.use Rack::OAuth2::Server::Resource::MAC, 'Rack::OAuth2 Sample Protected Resources' do |req|
-      AccessToken.valid.find_by_token(req.access_token) || req.invalid_token!
+      token = AccessToken.valid.find_by_token(req.access_token) || req.invalid_token!
+      token.to_mac_token.verify!(req)
     end
   end
 end
