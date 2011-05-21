@@ -1,6 +1,6 @@
 development: &defaults
-  client_id: 134143439988157
-  client_secret: 6f19368547f08a468c87f4e1d1e2f273
+  client_id: 162273707168383
+  client_secret: 5e2227a78663e8d568816548a13a829d
 
 test:
   <<: *defaults

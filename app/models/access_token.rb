@@ -11,10 +11,10 @@ class AccessToken < ActiveRecord::Base
 
   def to_mac_token(with_refresh_token = false)
     mac_token = Rack::OAuth2::AccessToken::MAC.new(
-      :access_token => self.token,
-      :secret       => self.secret,
-      :algorithm    => self.algorithm,
-      :expires_in   => self.expires_in
+      :access_token  => self.token,
+      :mac_key       => self.secret,
+      :mac_algorithm => self.algorithm,
+      :expires_in    => self.expires_in
     )
     if with_refresh_token
       mac_token.refresh_token = self.create_refresh_token(
